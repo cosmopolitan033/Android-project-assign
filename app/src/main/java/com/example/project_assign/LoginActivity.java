@@ -45,8 +45,10 @@ public class LoginActivity extends Activity {
         if (storedUser != null) {
             if (userPassword.equals(storedUser.getPassword())){
                 Toast.makeText(this,"Login successful", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this,ProfileActivity.class);
+                intent.putExtra("USER_ID",storedUser.getUserId());
                 startActivity(intent);
+                finish();
             }else {
                 Toast.makeText(this,"Incorrect password", Toast.LENGTH_SHORT).show();
             }

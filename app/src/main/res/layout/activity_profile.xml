@@ -19,13 +19,36 @@
         android:textSize="20sp"
         android:layout_below="@id/tvName" />
 
-    <!-- Add other TextViews and EditTexts as needed -->
+    <TextView
+        android:id="@+id/tvAvailability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Availability"
+        android:textSize="20sp"
+        android:layout_below="@id/tvSubjects" />
+
+    <TextView
+        android:id="@+id/tvStudyPreference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StudyPreference"
+        android:textSize="20sp"
+        android:layout_below="@id/tvAvailability" />
 
     <Button
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit"
-        android:layout_below="@id/tvSubjects" />
+        android:layout_below="@id/tvStudyPreference"
+        android:layout_marginTop="95dp"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnEdit"
+        android:layout_marginTop="154dp"
+        android:text="Save" />
 
 </RelativeLayout>
