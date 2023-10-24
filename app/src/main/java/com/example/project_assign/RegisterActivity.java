@@ -2,6 +2,7 @@ package com.example.project_assign;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,9 @@ public class RegisterActivity extends Activity {
             User newUser = new User(userName, userPassword);
             databaseHelper.insertUser(newUser);
             Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "UserName already exists", Toast.LENGTH_SHORT).show();
         }

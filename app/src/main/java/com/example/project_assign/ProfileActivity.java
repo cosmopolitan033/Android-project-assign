@@ -1,5 +1,6 @@
 package com.example.project_assign;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -25,7 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText etAvailability;
     private Button btnEditProfile;
     private Button btnSaveProfile;
-
+    private Button btnStudyPlans;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         etStudyPreference = findViewById(R.id.tvStudyPreference);
         btnEditProfile = findViewById(R.id.btnEdit);
         btnSaveProfile = findViewById(R.id.btnSave);
+        btnStudyPlans = findViewById(R.id.btnStudyPlans);
         setFieldsEditable(false);
 
         Log.d("fuck", String.valueOf(profile));
@@ -63,6 +65,11 @@ public class ProfileActivity extends AppCompatActivity {
                 setFieldsEditable(false);
 
             }
+        });
+        btnStudyPlans.setOnClickListener(view -> {
+            Intent intent = new Intent(ProfileActivity.this, StudyPlanActivity.class);
+            intent.putExtra("USER_ID", userID);
+            startActivity(intent);
         });
     }
     private void setFieldsEditable(boolean editable){
