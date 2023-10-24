@@ -1,7 +1,9 @@
 package com.example.project_assign;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import adapters.StudyPlanAdapter;
 import models.StudyPlan;
+import models.StudySession;
 import utils.DatabaseHelper;
 
 public class StudyPlanActivity extends AppCompatActivity {
@@ -88,5 +91,20 @@ public class StudyPlanActivity extends AppCompatActivity {
                 }
             }
         });
+        studyPlanListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                StudyPlan studyPlan = studyPlans.get(position);
+                List<StudySession> studySessions = studyPlan.getStudySessions();
+                if (studySessions != null && !studySessions.isEmpty()) {
+                    // Assume you want to display the first session of the selected study plan
+                    StudySession studySession = studySessions.get(0);
+                    Intent intent = new Intent(StudyPlanActivity.this, StudySessionActivity.class);
+                    intent.putExtra("STUDY_SESSION_ID", studySession.getStudySessionId());
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 }

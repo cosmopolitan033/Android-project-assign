@@ -282,6 +282,33 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return null;
     }
 
+    public List<StudySession> getStudySessionsByStudyPlanId(long studyPlanId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<StudySession> studySessions = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_STUDY_SESSION,
+                new String[]{COLUMN_STUDY_SESSION_ID, COLUMN_DATE, COLUMN_TOPIC, COLUMN_STUDY_RESULT_ID},
+                COLUMN_STUDY_PLAN_ID + "=?",
+                new String[]{String.valueOf(studyPlanId)}, null, null, null);
+        while (cursor != null && cursor.moveToNext()) {
+            long sessionId = cursor.getLong(0);
+            String date = cursor.getString(1);
+            String topic = cursor.getString(2);
+            long resultId = cursor.getLong(3);
+
+            // Get the StudyResult associated with this StudySession
+            StudyResult result = getStudyResultById(resultId);
+
+            StudySession studySession = new StudySession(sessionId, date, topic, resultId);
+            studySession.setStudyResultId(result.getStudyResultId());  // Set the result in the session
+
+            studySessions.add(studySession);
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        return studySessions;
+    }
+
     public List<StudyPlan> getStudyPlans(long userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<StudyPlan> studyPlans = new ArrayList<>();
