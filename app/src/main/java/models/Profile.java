@@ -1,7 +1,7 @@
 package models;
 
 public class Profile {
-    private long profileID;
+    private long userID;
     private String name;
     private String subjects;
     private String availability;
@@ -14,20 +14,20 @@ public class Profile {
         this.studyPreference = studyPreference;
     }
 
-    public Profile(long profileID, String name, String subjects, String availability, String studyPreference) {
-        this.profileID = profileID;
+    public Profile(long userID, String name, String subjects, String availability, String studyPreference) {
+        this.userID = userID;
         this.name = name;
         this.subjects = subjects;
         this.availability = availability;
         this.studyPreference = studyPreference;
     }
 
-    public long getProfileID() {
-        return profileID;
+    public long getUserID() {
+        return userID;
     }
 
-    public void setProfileID(long profileID) {
-        this.profileID = profileID;
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 
     public String getName() {

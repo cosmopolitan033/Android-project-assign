@@ -1,51 +1,34 @@
 package models;
 
-import android.se.omapi.Session;
+import java.util.List;
 
 public class StudyPlan {
-    private long planId;
-    private User participant;
-    private Session[] sessions;
+    private long studyPlanId;
     private String subject;
+    private String participants;
+    private List<StudySession> studySessions;  // Added a list to store StudySession objects
 
-    public StudyPlan() {
-    }
-
-    public StudyPlan(User participant, Session[] sessions, String subject) {
-        this.participant = participant;
-        this.sessions = sessions;
+    public StudyPlan(String subject, String participants, List<StudySession> studySessions) {
         this.subject = subject;
+        this.participants = participants;
+        this.studySessions = studySessions;
     }
 
-    public StudyPlan(long planId, User participant, Session[] sessions, String subject) {
-        this.planId = planId;
-        this.participant = participant;
-        this.sessions = sessions;
+    public StudyPlan(long studyPlanId, String subject, String participants, List<StudySession> studySessions) {
+        this.studyPlanId = studyPlanId;
         this.subject = subject;
+        this.participants = participants;
+        this.studySessions = studySessions;
     }
 
-    public long getPlanId() {
-        return planId;
+    // Getter and setter methods for all attributes
+
+    public long getStudyPlanId() {
+        return studyPlanId;
     }
 
-    public void setPlanId(long planId) {
-        this.planId = planId;
-    }
-
-    public User getParticipant() {
-        return participant;
-    }
-
-    public void setParticipant(User participant) {
-        this.participant = participant;
-    }
-
-    public Session[] getSessions() {
-        return sessions;
-    }
-
-    public void setSessions(Session[] sessions) {
-        this.sessions = sessions;
+    public void setStudyPlanId(long studyPlanId) {
+        this.studyPlanId = studyPlanId;
     }
 
     public String getSubject() {
@@ -54,5 +37,21 @@ public class StudyPlan {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public String getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(String participants) {
+        this.participants = participants;
+    }
+
+    public List<StudySession> getStudySessions() {
+        return studySessions;
+    }
+
+    public void setStudySessions(List<StudySession> studySessions) {
+        this.studySessions = studySessions;
     }
 }

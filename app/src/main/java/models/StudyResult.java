@@ -1,13 +1,10 @@
 package models;
 
 public class StudyResult {
-    private long resultId;
+    private long studyResultId;
     private String notes;
     private int rating;
     private String feedback;
-
-    public StudyResult() {
-    }
 
     public StudyResult(String notes, int rating, String feedback) {
         this.notes = notes;
@@ -15,19 +12,19 @@ public class StudyResult {
         this.feedback = feedback;
     }
 
-    public StudyResult(long resultId, String notes, int rating, String feedback) {
-        this.resultId = resultId;
+    public StudyResult(long studyResultId, String notes, int rating, String feedback) {
+        this.studyResultId = studyResultId;
         this.notes = notes;
         this.rating = rating;
         this.feedback = feedback;
     }
 
-    public long getResultId() {
-        return resultId;
+    public long getStudyResultId() {
+        return studyResultId;
     }
 
-    public void setResultId(long resultId) {
-        this.resultId = resultId;
+    public void setStudyResultId(long studyResultId) {
+        this.studyResultId = studyResultId;
     }
 
     public String getNotes() {

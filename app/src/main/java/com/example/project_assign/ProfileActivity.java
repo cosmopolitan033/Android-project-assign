@@ -5,6 +5,7 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -18,10 +19,10 @@ public class ProfileActivity extends AppCompatActivity {
     private long userID;
     private Profile profile;
 
-    private TextView tvName;
-    private TextView tvSubjects;
-    private TextView tvStudyPreference;
-    private TextView tvAvailability;
+    private EditText etName;
+    private EditText etSubjects;
+    private EditText etStudyPreference;
+    private EditText etAvailability;
     private Button btnEditProfile;
     private Button btnSaveProfile;
 
@@ -34,21 +35,22 @@ public class ProfileActivity extends AppCompatActivity {
         userID = getIntent().getLongExtra("USER_ID",-1);
         profile = db.getProfileyUserId(userID);
 
-        tvName = findViewById(R.id.tvName);
-        tvSubjects = findViewById(R.id.tvSubjects);
-        tvAvailability = findViewById(R.id.tvAvailability);
-        tvStudyPreference = findViewById(R.id.tvStudyPreference);
+        etName = findViewById(R.id.tvName);
+        etSubjects = findViewById(R.id.tvSubjects);
+        etAvailability = findViewById(R.id.tvAvailability);
+        etStudyPreference = findViewById(R.id.tvStudyPreference);
         btnEditProfile = findViewById(R.id.btnEdit);
         btnSaveProfile = findViewById(R.id.btnSave);
+        setFieldsEditable(false);
 
+        Log.d("fuck", String.valueOf(profile));
         if (profile != null) {
-            tvName.setText(profile.getName());
-            tvSubjects.setText(profile.getSubjects());
-            tvAvailability.setText(profile.getAvailability());
-            tvStudyPreference.setText(profile.getStudyPreference());
+            etName.setText(profile.getName());
+            etSubjects.setText(profile.getSubjects());
+            etAvailability.setText(profile.getAvailability());
+            etStudyPreference.setText(profile.getStudyPreference());
         }
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
-//fixme
             @Override
             public void onClick(View view) {
                 setFieldsEditable(true);
@@ -64,17 +66,20 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
     private void setFieldsEditable(boolean editable){
-        tvName.setEnabled(editable);
-        tvSubjects.setEnabled(editable);
-        tvAvailability.setEnabled(editable);
-        tvStudyPreference.setEnabled(editable);
+        etName.setEnabled(editable);
+        etSubjects.setEnabled(editable);
+        etAvailability.setEnabled(editable);
+        etStudyPreference.setEnabled(editable);
     }
     private void saveProfileData(long userId){
-        String name = tvName.getText().toString();
-        String subjects = tvSubjects.getText().toString();
-        String availability = tvAvailability.getText().toString();
-        String studyPreference = tvStudyPreference.getText().toString();
-        Profile profile = new Profile(name,subjects,availability,studyPreference);
-        db.updateProfile(userId,name,subjects,availability,studyPreference);
+        String name = etName.getText().toString();
+        String subjects = etSubjects.getText().toString();
+        String availability = etAvailability.getText().toString();
+        String studyPreference = etStudyPreference.getText().toString();
+        if (db.profileExists(userId)) {
+            db.updateProfile(userId, name, subjects, availability, studyPreference);
+        } else {
+            db.insertProfile(userId, name, subjects, availability, studyPreference);
+        }
     }
 }

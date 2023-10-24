@@ -33,7 +33,7 @@ public class StudyPlanActivity extends AppCompatActivity {
         addStudyPlanButton = findViewById(R.id.btnCreate);
 
         userId = getIntent().getLongExtra("USER_ID",-1);
-        studyPlans = databaseHelper.getAllStudyPlans(userId);
+        studyPlans = databaseHelper.getStudyPlans(userId);
         studyPlanAdapter = new StudyPlanAdapter(this,studyPlans);
         studyPlanListView.setAdapter((ListAdapter) studyPlanAdapter);
 

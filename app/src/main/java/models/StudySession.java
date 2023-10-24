@@ -1,33 +1,30 @@
 package models;
 
-import android.telephony.mbms.MbmsErrors;
-
 public class StudySession {
-    private long sessionId;
+    private long studySessionId;
     private String date;
     private String topic;
-    private StudyResult result;
+    private long studyResultId;
 
-    public StudySession() {
-    }
-    public StudySession(String date, String topic, StudyResult result) {
+    public StudySession(String date, String topic, long studyResultId) {
         this.date = date;
         this.topic = topic;
-        this.result = result;
+        this.studyResultId = studyResultId;
     }
-    public StudySession(long sessionId, String date, String topic, StudyResult result) {
-        this.sessionId = sessionId;
+
+    public StudySession(long studySessionId, String date, String topic, long studyResultId) {
+        this.studySessionId = studySessionId;
         this.date = date;
         this.topic = topic;
-        this.result = result;
+        this.studyResultId = studyResultId;
     }
 
-    public long getSessionId() {
-        return sessionId;
+    public long getStudySessionId() {
+        return studySessionId;
     }
 
-    public void setSessionId(long sessionId) {
-        this.sessionId = sessionId;
+    public void setStudySessionId(long studySessionId) {
+        this.studySessionId = studySessionId;
     }
 
     public String getDate() {
@@ -46,11 +43,11 @@ public class StudySession {
         this.topic = topic;
     }
 
-    public StudyResult getResult() {
-        return result;
+    public long getStudyResultId() {
+        return studyResultId;
     }
 
-    public void setResult(StudyResult result) {
-        this.result = result;
+    public void setStudyResultId(long studyResultId) {
+        this.studyResultId = studyResultId;
     }
 }

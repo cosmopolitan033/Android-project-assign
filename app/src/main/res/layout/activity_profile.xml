@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
         android:textSize="20sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvSubjects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:textSize="20sp"
         android:layout_below="@id/tvName" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvAvailability"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:textSize="20sp"
         android:layout_below="@id/tvSubjects" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvStudyPreference"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
