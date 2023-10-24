@@ -67,11 +67,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private String CREATE_STUDY_PLAN_TABLE = "CREATE TABLE " + TABLE_STUDY_PLAN + "(" + COLUMN_STUDY_PLAN_ID +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_SUBJECT + " TEXT, " +
-            COLUMN_PARTICIPANTS + " TEXT" + ")";
+            COLUMN_PARTICIPANTS + " TEXT, " + COLUMN_USER_ID + " INTEGER" + ")";
+
 
     private String CREATE_STUDY_SESSION_TABLE = "CREATE TABLE " + TABLE_STUDY_SESSION + "(" + COLUMN_STUDY_SESSION_ID +
-            " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DATE + " TEXT, " +
-            COLUMN_TOPIC + " TEXT, " + COLUMN_STUDY_RESULT_ID + " INTEGER" + ")";
+            " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STUDY_PLAN_ID + " INTEGER, " +
+            COLUMN_DATE + " TEXT, " + COLUMN_TOPIC + " TEXT, " + COLUMN_STUDY_RESULT_ID + " INTEGER" + ")";
+
 
     private String CREATE_STUDY_RESULT_TABLE = "CREATE TABLE " + TABLE_STUDY_RESULT + "(" + COLUMN_STUDY_RESULT_ID +
             " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NOTES + " TEXT, " +
@@ -193,6 +195,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(COLUMN_SUBJECT, studyPlan.getSubject());
         values.put(COLUMN_PARTICIPANTS, studyPlan.getParticipants());
+        values.put(COLUMN_USER_ID, userId);  // Include the userId when inserting the study plan
         long studyPlanId = db.insert(TABLE_STUDY_PLAN, null, values);
 
         // Insert the StudySessions associated with this StudyPlan
@@ -223,6 +226,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
         return studyPlanId;
     }
+
+
     // StudyResult methods
     public long insertStudyResult(StudyResult studyResult) {
         SQLiteDatabase db = this.getWritableDatabase();

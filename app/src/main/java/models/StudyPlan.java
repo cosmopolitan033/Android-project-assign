@@ -14,6 +14,11 @@ public class StudyPlan {
         this.studySessions = studySessions;
     }
 
+    public StudyPlan(String subject, String participants) {
+        this.subject = subject;
+        this.participants = participants;
+    }
+
     public StudyPlan(long studyPlanId, String subject, String participants, List<StudySession> studySessions) {
         this.studyPlanId = studyPlanId;
         this.subject = subject;

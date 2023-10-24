@@ -57,5 +57,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnSave"
         android:layout_marginTop="154dp"
-        android:text="Save" />
+        android:text="StudyPlan" />
 </RelativeLayout>
